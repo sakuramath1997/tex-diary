@@ -1,3 +1,5 @@
+\newcommand{\DefineWord}[2]{\expandafter\newcommand\csname Word#1\endcsname{#2}}
+
 \usepackage{expl3}
 % meta-macros
 \NewDocumentCommand{\Placeholder}{s}{ \IfBooleanTF{#1}{ ? }{ \text{\textendash} } }
