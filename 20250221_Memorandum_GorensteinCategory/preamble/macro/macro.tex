@@ -1,0 +1,21 @@
+\newcommand{\MathHyphen}{\mathchar`-}
+
+\NewDocumentCommand{\Class}{d<>}{\ConceptDefinitor{\mathcal{X}}<#1>}
+\NewDocumentCommand{\Subclass}{d<>}{\Class<\IfValueTF{#1}{\mathcal{S}}{#1}>}
+
+\NewDocumentCommand{\Ring}{d<>}{\ConceptDefinitor{R}<#1>}
+\NewDocumentCommand{\CommutativeRing}{d<>}{\Ring<\ConceptDefinitor{R}<#1>>}
+\NewDocumentCommand{\CommutativeNoetherRing}{d<>}{\CommutativeRing<\ConceptDefinitor{R}<#1>>}
+
+
+\NewDocumentCommand{\Module}{d<>}{\ConceptDefinitor{M}<#1>}
+
+\NewDocumentCommand{\Category}{d<>}{\ConceptDefinitor{\mathcal{C}}<#1>}
+\NewDocumentCommand{\AbelianCategory}{d<>}{\Category<\ConceptDefinitor{\mathcal{A}}<#1>>}
+\NewDocumentCommand{\ModCat}{d()}{\Category<\mathsf{Mod}(#1)>}
+\NewDocumentCommand{\BenabouCosmos}{d<>}{\Category<\IfValueTF{#1}{#1}{V}>}
+
+\NewDocumentCommand{\GorensteinDimension}{d()}{\mathrm{G\MathHyphen dim}(#1)}
+\NewDocumentCommand{\ProjectiveDimension}{d()}{\mathrm{pd}(#1)}
+\NewDocumentCommand{\GorensteinProjectiveDimension}{d()}{\mathrm{Gpd}(#1)}
+
