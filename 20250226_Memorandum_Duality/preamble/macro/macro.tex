@@ -1,0 +1,21 @@
+\NewDocumentCommand{\Element}{d<>}{\ConceptDefinitor{x}<#1>}
+
+
+\NewDocumentCommand{\Relation}{d<> s}{\IfBooleanTF{#2}{\mathrel{\ConceptDefinitor{R}<#1>}}{\ConceptDefinitor{R}<#1>}}
+
+\NewDocumentCommand{\OrderedPair}{d<>}{\left\langle #1 \right\rangle}
+
+%\NewDocumentCommand{\OrderedSet}{d<> s}{ \IfBooleanTF{#2}{ \OrderedPair<\OrderedSet<#1>, \leq_{\OrderedSet<#1>}> }{ \ConceptDefinitor{X}<#1> } }
+%\StructuredMathObjectDefinitor{OrderedSet}{X}{\leq}
+
+\NewDocumentCommand{\MyFunc}{mm}{{#1}_{#2}}
+
+
+\NewDocumentCommand{\HOHOHO}{m}{ f(#1) }
+\NewDocumentCommand{\MyTestFunction}{mms}{
+    \IfBooleanTF{#1}{
+        \OrderedPair<\MyTestFunction{#2}{#3}, \HelperFunction{a,b,c}{#3}>
+    }{
+        \csname\string#2\endcsname{#3} 
+    }
+}

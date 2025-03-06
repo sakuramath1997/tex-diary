@@ -1,0 +1,139 @@
+\usepackage[dvipdfmx,bookmarks=true,bookmarksnumbered=true,setpagesize=false]{hyperref}
+\usepackage{hyperref}
+\usepackage{pxjahyper}
+% `pxjahyper` should be loaded AFTER `hyperref`
+\usepackage{cleveref}
+% `cleverref` should be loaded AFTER `hypreref`
+% `cleverref` should be loaded AFTER `amsthm`, and BEFORE the definition of theorem environments.
+
+\newcommand{\crefrangeconjunction}{--}  % \crefrange{a}{b} -> [a]\crefrangeconjunction[b]
+\newcommand{\crefpairconjunction}{, }   % \cref{a,b}       -> [a]\crefpairconjunction[b]
+\newcommand{\crefmiddleconjunction}{, } % \cref{a,b,c,d}   -> [a]\crefmiddleconjunction[b]\crefmiddleconjunction[c]\creflastconjunction[d]
+\newcommand{\creflastconjunction}{, }
+\newcommand{\crefpairgroupconjunction}{，}
+\newcommand{\crefmiddlegroupconjunction}{，}
+\newcommand{\creflastgroupconjunction}{，}
+
+\newcommand{\crefpreandpostname}[5]{%
+	\crefformat{#1}{#2##2##1##3#3}%
+	\crefrangeformat{#1}{#4##3##1##4\crefrangeconjunction##5##2##6#5}%
+	\crefmultiformat{#1}{#4##2##1##3}{\crefpairconjunction##2##1##3#5}{\crefmiddleconjunction##2##1##3}{\creflastconjunction##2#1#3#5}%
+	\crefmultiformat{#1}{#4##2##1##3}{\crefpairconjunction##2##1##3#5}{\crefmiddleconjunction##2##1##3}{\creflastconjunction##2#1#3#5}%
+}
+\newcommand{\Crefpreandpostname}[5]{%
+	\Crefformat{#1}{#2##2##1##3#3}%
+	\Crefrangeformat{#1}{#4##3##1##4\crefrangeconjunction##5##2##6#5}%
+	\Crefmultiformat{#1}{#4##2##1##3}{\crefpairconjunction##2##1##3#5}{\crefmiddleconjunction##2##1##3}{\creflastconjunction##2#1#3#5}%
+	\Crefmultiformat{#1}{#4##2##1##3}{\crefpairconjunction##2##1##3#5}{\crefmiddleconjunction##2##1##3}{\creflastconjunction##2#1#3#5}%
+}
+
+% \crefpreandpostname{chapter}{第}{章}{第}{章}
+% \Crefpreandpostname{chapter}{第}{章}{第}{章}
+\crefpreandpostname{section}{}{節}{}{節}
+\Crefpreandpostname{section}{}{節}{}{節}
+\crefpreandpostname{subsection}{}{節}{}{節}
+\Crefpreandpostname{subsection}{}{節}{}{節}
+\crefpreandpostname{subsubsection}{}{節}{}{節}
+\Crefpreandpostname{subsubsection}{}{節}{}{節}
+\crefname{appendix}{}{} % `\theappendix` contains `\appendixname` ("付録")
+\Crefname{appendix}{}{}
+\crefpreandpostname{subappendix}{}{節}{}{節}
+\Crefpreandpostname{subappendix}{}{節}{}{節}
+\crefpreandpostname{subsubappendix}{}{節}{}{節}
+\Crefpreandpostname{subsubappendix}{}{節}{}{節}
+\crefpreandpostname{equation}{(}{)}{(}{)}
+\Crefpreandpostname{equation}{(}{)}{(}{)}
+\crefname{figure}{\figurename}{\figurename}
+\Crefname{figure}{\figurename}{\figurename}
+\crefname{table}{\tablename}{\tablename}
+\Crefname{table}{\tablename}{\tablename}
+
+\crefpreandpostname{enumarabici}{}{}{}{}
+\crefpreandpostname{enumarabicii}{}{}{}{}
+\crefpreandpostname{enumarabiciii}{}{}{}{}
+\crefpreandpostname{enumarabiciv}{}{}{}{}
+\crefpreandpostname{enumarabicv}{}{}{}{}
+%
+\crefpreandpostname{enumarabicdi}{}{}{}{}
+\crefpreandpostname{enumarabicdii}{}{}{}{}
+\crefpreandpostname{enumarabicdiii}{}{}{}{}
+\crefpreandpostname{enumarabicdiv}{}{}{}{}
+\crefpreandpostname{enumarabicdv}{}{}{}{}
+%
+\crefpreandpostname{enumarabicpi}{}{}{}{}
+\crefpreandpostname{enumarabicpii}{}{}{}{}
+\crefpreandpostname{enumarabicpiii}{}{}{}{}
+\crefpreandpostname{enumarabicpiv}{}{}{}{}
+\crefpreandpostname{enumarabicpv}{}{}{}{}
+%
+\crefpreandpostname{enumAlphi}{}{}{}{}
+\crefpreandpostname{enumAlphii}{}{}{}{}
+\crefpreandpostname{enumAlphiii}{}{}{}{}
+\crefpreandpostname{enumAlphiv}{}{}{}{}
+\crefpreandpostname{enumAlphv}{}{}{}{}
+%
+\crefpreandpostname{enumAlphdi}{}{}{}{}
+\crefpreandpostname{enumAlphdii}{}{}{}{}
+\crefpreandpostname{enumAlphdiii}{}{}{}{}
+\crefpreandpostname{enumAlphdiv}{}{}{}{}
+\crefpreandpostname{enumAlphdv}{}{}{}{}
+%
+\crefpreandpostname{enumAlphpi}{}{}{}{}
+\crefpreandpostname{enumAlphpii}{}{}{}{}
+\crefpreandpostname{enumAlphpiii}{}{}{}{}
+\crefpreandpostname{enumAlphpiv}{}{}{}{}
+\crefpreandpostname{enumAlphpv}{}{}{}{}
+%
+\crefpreandpostname{enumalphi}{}{}{}{}
+\crefpreandpostname{enumalphii}{}{}{}{}
+\crefpreandpostname{enumalphiii}{}{}{}{}
+\crefpreandpostname{enumalphiv}{}{}{}{}
+\crefpreandpostname{enumalphv}{}{}{}{}
+%
+\crefpreandpostname{enumalphdi}{}{}{}{}
+\crefpreandpostname{enumalphdii}{}{}{}{}
+\crefpreandpostname{enumalphdiii}{}{}{}{}
+\crefpreandpostname{enumalphdiv}{}{}{}{}
+\crefpreandpostname{enumalphdv}{}{}{}{}
+%
+\crefpreandpostname{enumalphpi}{}{}{}{}
+\crefpreandpostname{enumalphpii}{}{}{}{}
+\crefpreandpostname{enumalphpiii}{}{}{}{}
+\crefpreandpostname{enumalphpiv}{}{}{}{}
+\crefpreandpostname{enumalphpv}{}{}{}{}
+%
+\crefpreandpostname{enumRomani}{}{}{}{}
+\crefpreandpostname{enumRomanii}{}{}{}{}
+\crefpreandpostname{enumRomaniii}{}{}{}{}
+\crefpreandpostname{enumRomaniv}{}{}{}{}
+\crefpreandpostname{enumRomanv}{}{}{}{}
+%
+\crefpreandpostname{enumRomandi}{}{}{}{}
+\crefpreandpostname{enumRomandii}{}{}{}{}
+\crefpreandpostname{enumRomandiii}{}{}{}{}
+\crefpreandpostname{enumRomandiv}{}{}{}{}
+\crefpreandpostname{enumRomandv}{}{}{}{}
+%
+\crefpreandpostname{enumRomanpi}{}{}{}{}
+\crefpreandpostname{enumRomanpii}{}{}{}{}
+\crefpreandpostname{enumRomanpiii}{}{}{}{}
+\crefpreandpostname{enumRomanpiv}{}{}{}{}
+\crefpreandpostname{enumRomanpv}{}{}{}{}
+%
+\crefpreandpostname{enumromani}{}{}{}{}
+\crefpreandpostname{enumromanii}{}{}{}{}
+\crefpreandpostname{enumromaniii}{}{}{}{}
+\crefpreandpostname{enumromaniv}{}{}{}{}
+\crefpreandpostname{enumromanv}{}{}{}{}
+%
+\crefpreandpostname{enumromandi}{}{}{}{}
+\crefpreandpostname{enumromandii}{}{}{}{}
+\crefpreandpostname{enumromandiii}{}{}{}{}
+\crefpreandpostname{enumromandiv}{}{}{}{}
+\crefpreandpostname{enumromandv}{}{}{}{}
+%
+\crefpreandpostname{enumromanpi}{}{}{}{}
+\crefpreandpostname{enumromanpii}{}{}{}{}
+\crefpreandpostname{enumromanpiii}{}{}{}{}
+\crefpreandpostname{enumromanpiv}{}{}{}{}
+\crefpreandpostname{enumromanpv}{}{}{}{}
