@@ -3,6 +3,20 @@
 \NewDocumentCommand{\AND}{}{\wedge}
 \NewDocumentCommand{\NOT}{}{\neg}
 
+\NewDocumentCommand{\MetamathematicalFramework}{d<>}{\mathsf{\ConceptDefinitor{Logic}<#1>}}
+\NewDocumentCommand{\IPC}{}{\MetamathematicalFramework<IPC>}
+\NewDocumentCommand{\IQC}{}{\MetamathematicalFramework<IQC>}
+\NewDocumentCommand{\CPC}{}{\MetamathematicalFramework<CPC>}
+\NewDocumentCommand{\CQC}{}{\MetamathematicalFramework<CQC>}
+\NewDocumentCommand{\HIPC}{}{\MetamathematicalFramework<H\Hyphen IPC>}
+\NewDocumentCommand{\HIQC}{}{\MetamathematicalFramework<H\Hyphen IQC>}
+\NewDocumentCommand{\HCPC}{}{\MetamathematicalFramework<H\Hyphen CPC>}
+\NewDocumentCommand{\HCQC}{}{\MetamathematicalFramework<H\Hyphen CQC>}
+\NewDocumentCommand{\NIPC}{}{\MetamathematicalFramework<N\Hyphen IPC>}
+\NewDocumentCommand{\NIQC}{}{\MetamathematicalFramework<N\Hyphen IQC>}
+\NewDocumentCommand{\NCPC}{}{\MetamathematicalFramework<N\Hyphen CPC>}
+\NewDocumentCommand{\NCQC}{}{\MetamathematicalFramework<N\Hyphen CQC>}
+
 \NewDocumentCommand{\Axiom}{d<>}{\mathsf{\ConceptDefinitor{Axiom}<#1>}}
 \NewDocumentCommand{\CZF}{}{\Axiom<CZF>}
 \NewDocumentCommand{\IZF}{}{\Axiom<IZF>}
