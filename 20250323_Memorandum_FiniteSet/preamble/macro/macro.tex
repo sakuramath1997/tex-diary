@@ -3,6 +3,12 @@
 \NewDocumentCommand{\AND}{}{\wedge}
 \NewDocumentCommand{\NOT}{}{\neg}
 
+\NewDocumentCommand{\Axiom}{d<>}{\mathsf{\ConceptDefinitor{Axiom}<#1>}}
+\NewDocumentCommand{\CZF}{}{\Axiom<CZF>}
+\NewDocumentCommand{\IZF}{}{\Axiom<IZF>}
+\NewDocumentCommand{\ZF}{}{\Axiom<ZF>}
+\NewDocumentCommand{\ZFC}{}{\Axiom<ZFC>}
+
 \NewDocumentCommand{\LPO}{e{_}}{\mathsf{LPO}\IfValueT{#1}{_{#1}}}
 
 \NewDocumentCommand{\NaturalNumber}{d<>}{\ConceptDefinitor{n}<#1>}
