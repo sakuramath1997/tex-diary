@@ -1,0 +1,166 @@
+\newtheoremstyle{mytheoremstyle}%
+{0.5\baselineskip}%
+{0.5\baselineskip}%
+{\normalfont}%
+{}%
+{\headfont}%
+{}%
+{1zw}%
+{\thmname{#1}\thmnumber{\ #2}\thmnote{（#3）\inhibitglue}}
+\theoremstyle{mytheoremstyle}
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}	[theorem]{命題}
+\newtheorem{corollary}		[theorem]{系}
+\newtheorem{lemma}			[theorem]{補題}
+\newtheorem{claim}			[theorem]{主張}
+\newtheorem{fact}			[theorem]{事実}
+\newtheorem{definition}		[theorem]{定義}
+\newtheorem{axiom}			[theorem]{公理}
+\newtheorem{convention}	[theorem]{慣習}
+\newtheorem{notation}		[theorem]{記法}
+\newtheorem{promise}		[theorem]{約束}
+\newtheorem{remark}		[theorem]{注意}
+\newtheorem{observation}	[theorem]{観察}
+\newtheorem{conjecture}	[theorem]{予想}
+\newtheorem{example}		[theorem]{例示}
+\newtheorem{exercise}		[theorem]{演習}
+\newtheorem{problem}		[theorem]{問題}
+\newtheorem{answer}		[theorem]{解答}
+\newtheorem{keyword}		[theorem]{鍵語}
+%\newtheorem{check}		[theorem]{確認}
+%\newtheorem{training}		[theorem]{訓練}
+%\newtheorem{basic}			[theorem]{基本}
+%\newtheorem{stepup}		[theorem]{応用}
+%\newtheorem{stepup}		[theorem]{発展}
+\newtheorem{thm}	[theorem]{定理}
+\newtheorem{prop}	[theorem]	{命題}
+\newtheorem{cor}		[theorem]	{系}
+\newtheorem{lem}		[theorem]	{補題}
+\newtheorem{dfn}		[theorem]	{定義}
+\newtheorem{rem}	[theorem]	{注意}
+\newtheorem{obs}	[theorem]	{観察}
+\newtheorem{conj}	[theorem]	{予想}
+\newtheorem{eg}		[theorem]	{例示}
+\newtheorem{ex}		[theorem]	{演習}
+\newtheorem{prob}	[theorem]	{問題}
+\newtheorem{ans}	[theorem]	{解答}
+\newtheorem{key}	[theorem]	{鍵語}
+
+\newtheorem*{theorem*}{定理}
+\newtheorem*{thm*}{定理}
+\newtheorem*{proposition*}{命題}
+\newtheorem*{prop*}{命題}
+\newtheorem*{corollary*}{系}
+\newtheorem*{cor*}{系}
+\newtheorem*{lemma*}{補題}
+\newtheorem*{lem*}{補題}
+\newtheorem*{claim*}{主張}
+\newtheorem*{fact*}{事実}
+\newtheorem*{definition*}{定義}
+\newtheorem*{dfn*}{定義}
+\newtheorem*{axiom*}{公理}
+\newtheorem*{convention*}{慣習}
+\newtheorem*{notation*}{記法}
+\newtheorem*{promise*}{約束}
+\newtheorem*{remark*}{注意}
+\newtheorem*{rem*}{注意}
+\newtheorem*{observation*}{観察}
+\newtheorem*{obs*}{観察}
+\newtheorem*{conjecture*}{予想}
+\newtheorem*{conj*}{予想}
+\newtheorem*{example*}{例示}
+\newtheorem*{eg*}{例示}
+\newtheorem*{exercise*}{演習}
+\newtheorem*{ex*}{演習}
+\newtheorem*{problem*}{問題}
+\newtheorem*{prob*}{問題}
+\newtheorem*{answer*}{解答}
+\newtheorem*{ans*}{解答}
+\newtheorem*{keyword*}{鍵語}
+\newtheorem*{key*}{鍵語}
+
+\crefname{theorem}{定理}{定理}
+\Crefname{theorem}{定理}{定理}
+\crefname{proposition}{命題}{命題}
+\Crefname{proposition}{命題}{命題}
+\crefname{corollary}{系}{系}
+\Crefname{corollary}{系}{系}
+\crefname{lemma}{補題}{補題}
+\Crefname{lemma}{補題}{補題}
+\crefname{claim}{主張}{主張}
+\Crefname{claim}{主張}{主張}
+\crefname{fact}{事実}{事実}
+\Crefname{fact}{事実}{事実}
+\crefname{definition}{定義}{定義}
+\Crefname{definition}{定義}{定義}
+\crefname{axiom}{公理}{公理}
+\Crefname{axiom}{公理}{公理}
+\crefname{convention}{慣習}{慣習}
+\Crefname{convention}{慣習}{慣習}
+\crefname{notation}{記法}{記法}
+\Crefname{notation}{記法}{記法}
+\crefname{notation}{記法}{記法}
+\Crefname{notation}{記法}{記法}
+\crefname{promise}{約束}{約束}
+\Crefname{promise}{約束}{約束}
+\crefname{remark}{注意}{注意}
+\Crefname{remark}{注意}{注意}
+\crefname{observation}{観察}{観察}
+\Crefname{observation}{観察}{観察}
+\crefname{conjecture}{予想}{予想}
+\Crefname{conjecture}{予想}{予想}
+\crefname{example}{例示}{例示}
+\Crefname{example}{例示}{例示}
+\crefname{exercise}{演習}{演習}
+\Crefname{exercise}{演習}{演習}
+\crefname{problem}{問題}{問題}
+\Crefname{problem}{問題}{問題}
+\crefname{answer}{解答}{解答}
+\Crefname{answer}{解答}{解答}
+\crefname{keyword}{鍵語}{鍵語}
+\Crefname{keyword}{鍵語}{鍵語}
+
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+	\pushQED{\qed}%
+	\normalfont \topsep6\p@\@plus6\p@\relax
+	\trivlist
+	\item\relax
+	{\itshape
+		#1\@addpunct{.}}\hspace\labelsep\ignorespaces
+}{
+	\popQED\endtrivlist\@endpefalse
+}
+\makeatother
+\renewcommand{\proofname}{証明}
+
+\newenvironment{subproof}[1]{#1\hspace{1zw}\ignorespaces}{}
+
+%%% Bibliography Environment
+%
+%\def\tosuustd@textbeforebib{}
+%\newcommand{\insertbeforebib}[1]{\long\def\tosuustd@textbeforebib{\ignorespaces #1}}
+%
+%\renewenvironment{thebibliography}[1]{%
+%	\global\let\presectionname\relax
+%	\global\let\postsectionname\relax
+%	\section*{\refname}\@mkboth{\refname}{\refname}%
+%	\tosuustd@textbeforebib
+%	\list{\@biblabel{\@arabic\c@enumiv}}%
+%	{\settowidth\labelwidth{\@biblabel{#1}}%
+%		\leftmargin\labelwidth
+%		\advance\leftmargin\labelsep
+%		\@openbib@code
+%		\usecounter{enumiv}%
+%		\let\p@enumiv\@empty
+%		\renewcommand\theenumiv{\@arabic\c@enumiv}}%
+%	\sloppy
+%	\clubpenalty4000
+%	\@clubpenalty\clubpenalty
+%	\widowpenalty4000%
+%	\sfcode`\.\@m}
+%{\def\@noitemerr
+%	{\@latex@warning{Empty `thebibliography' environment}}%
+%	\endlist}
+%
