@@ -1,0 +1,27 @@
+\subsection{1章}
+\subsubsection{本文中の演習問題}
+\subsubsection{章末の演習問題}
+\begin{exercise}
+    可換環\(\CommutativeRing\)の冪零元\(\Element\)につき，\(1+\Element\)は\(\CommutativeRing\)の単元であることを示せ。
+    また，可換環に於いて，冪零元と単元との和は単元であることを示せ。
+\end{exercise}
+\begin{answer}
+    \(\Element\)は冪零元なので正の整数\(\NaturalNumber\)が存在して\(\Element^{\NaturalNumber}=0\)が成り立つ。
+    よって
+    \begin{center}
+        \((1-\Element)(1+\Element+\Element^2+\cdots+\Element^{n-1})=1-\Element^{n}=1\)
+    \end{center}
+    が得られ，\(1-\Element\)は単元である。
+    特に\(-\Element\)を\(\Element\)として取り直せば，\(1+\Element\)が単元であることが分かった。
+
+    単元\(\Element<u>\)を任意に取ると，\(\Element<u>+\Element=\Element<u>(1+\Element<u>\Inv\Element)\)と分解でき，
+    \(\Element<u>\Inv\Element\)は冪零元である。
+    よって先に示したことから\(1+\Element<u>\Inv\Element\)が単元であること，即ち，\(\Element<u>+\Element\)が単元であることが得られた。
+\end{answer}
+\begin{remark}
+    後半の証明に於いて\(\Element<u>\Inv\Element\)が冪零元であることを用いたが，これは非可換環だと成り立つのかは考えられていない。
+\end{remark}
+
+\begin{exercise}
+    
+\end{exercise}
