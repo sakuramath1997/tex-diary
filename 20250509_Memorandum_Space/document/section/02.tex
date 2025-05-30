@@ -1,0 +1,109 @@
+\NewDocumentCommand{\FunctionStyle}{mmm}{{#1}\colon{#2}\rightarrow{#3}}
+\NewDocumentCommand{\ParallelFunctionStyle}{mmm}{{#1}\colon{#2}\rightrightarrows{#3}}
+\NewDocumentCommand{\Map}{d<> d()}{\IfValueTF{#1}{#1}{f}\IfValueT{#2}{(#2)}}
+\NewDocumentCommand{\Morphism}{d<> d()}{\IfValueTF{#1}{#1}{f}\IfValueT{#2}{(#2)}}
+%\NewDocumentCommand{\Object}{d<>}{\ConceptDefinitor{X}<#1>}
+\NewDocumentCommand{\QuotientStyle}{mm}{{#1}/{#2}}
+\NewDocumentCommand{\UnderCategory}{mm}{\QuotientStyle{#1}{#2}}
+\NewDocumentCommand{\Category}{d<>}{\ConceptDefinitor{\mathcal{C}}<#1>}
+\NewDocumentCommand{\ZariskiCategory}{d<>}{\Category<\IfValueTF{#1}{#1}{\mathcal{A}}>}
+\NewDocumentCommand{\TerminalObject}{}{%\raisebox{-0.5ex}
+{\scalebox{1}[1.15]{\(\mathbb{1}\)}}}
+\NewDocumentCommand{\OrderedTuple}{d<>}{\langle #1 \rangle}
+\NewDocumentCommand{\YAKUTYU}{m}{{\color{red}#1}}
+
+%\section{Zariski Categories}
+\section{Zariski圏}
+%We use the axiomatic method, which deals with categories equipped with a specified structure rather than categories described concretely by their objects and their morphisms. 
+%The so-called Zariski categories have such a structure, and we claim here that it is the basic structure of categories of commutative algebras. 
+%We shall prove the validity of this claim by developing, in an arbitrary Zariski category, elementary commutative algebra and algebraic geometry. 
+対象や射を具体的に記述することによって圏を定めるのではなく，公理的に定義された構造を備えた圏を考えることがあります。
+所謂\WordZariskiCategory はこの構造を備えた圏の一種であり，
+可換環の為す圏の基本的な構造を規定するものであると考えられます。
+このことを確かめるために，本節では一般の\WordZariskiCategory に於いて，初等的な可換環論と代数幾何が展開できることを示します。
+
+%This structure of Zariski categories relies on the notion of codisjunctors. 
+%This universal construction is introduced in order to describe the calculus of fractions and is used extensively. 
+%In Zariski categories, the congruences, also called effective equivalence relations, play the important role of ideals. 
+%A kind of De Morgan law for codisjunctors of congruences is assumed. 
+%Among the basic properties of Zariski categories are the flatness properties. 
+%We use the following definition: a morphism \(\FunctionStyle{\Map}{\Object<A>}{\Object<B>}\) is flat in \(\ZariskiCategory\) if the pushout functor \(\UnderCategory{\Object<A>}{\ZariskiCategory}\to\UnderCategory{\Object<B>}{\ZariskiCategory}\) along \(\Map\) preserves monomorphisms. 
+%Codisjunctors are assumed to be flat morphisms. 
+\WordZariskiCategory の構造は\WordCodisjunctor の概念を用いて定義されます。
+この普遍的な構成法は局所化を記述するために導入し，広く用います。
+可換環の為す圏に於いてイデアルが重要であったように，
+\WordZariskiCategory に於いては\WordCongruence（\WordEffectiveEquivalenceRelation とも呼ばれます）が重要な役割を果たします。
+\WordCongruence の\WordCodisjunctor に対する\WordDeMorganLaw の一種は，\WordZariskiCategory の定義で仮定されます。
+\WordZariskiCategory に於いて基本的な性質の一つに，平坦性が挙げられます。
+ここで\WordZariskiCategory の射\(\FunctionStyle{\Map}{\Object<A>}{\Object<B>}\)が平坦であるとは，
+\(\Map\)に沿った\WordPushoutFunctor\(\UnderCategory{\Object<A>}{\ZariskiCategory}\to\UnderCategory{\Object<B>}{\ZariskiCategory}\)が\WordMonomorphism を保つことをいいます。
+\WordZariskiCategory に於いては\WordCodisjunctor は平坦射であることが仮定されます。
+
+%\subsection{Codisjunctors}
+\subsection{\WordCodisjunctor}
+
+%Let us be in an arbitrary category \(\ZariskiCategory\).
+%A {\sl terminal} objects in \(\ZariskiCategory\) will be denoted by \(\TerminalObject\), i.e. for any object \(\Object<A>\), there is a unique morphism \(\Object<A>\to\TerminalObject\). 
+%Such a terminal object is said to be {\sl strict} \cite{21} if any morphism \(\FunctionStyle{\Map}{\TerminalObject}{\Object<A>}\) is an isomorphism. 
+本副節では，\(\ZariskiCategory\)は圏を表わすものとします。
+\(\ZariskiCategory\)に於ける終対象が存在するとき，
+これを\(\TerminalObject\)と書きます。
+ここで，対象\(\TerminalObject\)が終対象であるとは，
+任意の対象\(\Object<A>\)につき，
+一意的な射\(\Object<A>\to\TerminalObject\)が存在することをいいます。
+終対象が厳格である\cite{21}とは，
+任意の射\(\FunctionStyle{\Map}{\TerminalObject}{\Object<A>}\)が同型であることをいいます。
+
+\begin{definition}
+    %A pair of parallel morphisms \(\FunctionStyle{\OrderedTuple<\Morphism<g>, \Morphism<h>>}{\Object<C>}{\Object<A>}\) is said to be codisjointed if any morphism \(\FunctionStyle{\Morphism<u>}{\Object<A>}{\Object<X>}\) which satisfies \(\Morphism<ug>=\Morphism<uh>\) necessarily has, as its codomain, a terminal object. 
+    平行射\(\ParallelFunctionStyle{%
+        \OrderedTuple<\Morphism<g>, \Morphism<h>>
+    }{%
+        \Object<C>
+    }{%
+        \Object<A>
+    }\)が\WordCodisjointed であるとは，
+    任意の射\(\FunctionStyle{\Morphism<u>}{\Object<A>}{\Object<X>}\)につき，
+    \(\Morphism<ug>=\Morphism<uh>\)を満たすならば，
+    終域\(\Object<X>\)が終対象であることをいう。
+\end{definition}
+
+%If the category \(\ZariskiCategory\) has no terminal object, a pair \(\FunctionStyle{\OrderedTuple<\Morphism<g>, \Morphism<h>>}{\Object<C>}{\Object<A>}\) is codisjointed if and only if there exists no morphism \(\FunctionStyle{\Morphism<u>}{\Object<A>}{\Object<X>}\) satisfying \(\Morphism<ug>=\Morphism<uh>\). 
+%If \(\ZariskiCategory\) has a terminal object \(\TerminalObject\), the existence of a pair of codisjointed morphisms implies that \(\TerminalObject\) is a strict terminal object. 
+%In this case, a pair \(\FunctionStyle{\OrderedTuple<\Morphism<g>, \Morphism<h>>}{\Object<C>}{\Object<A>}\) is codisjointed if and only if the morphism \(\Object<A>\to\TerminalObject\) is the coequalizer of \(\OrderedTuple<\Morphism<g>, \Morphism<h>>\). 
+%In a category with a non-strict terminal object, for instance a null object, there exists no pair of codisjointed morphisms. 
+圏\(\ZariskiCategory\)が終対象を持たないならば，平行射\(\ParallelFunctionStyle{%
+    \OrderedTuple<\Morphism<g>, \Morphism<h>>
+}{%
+    \Object<C>
+}{%
+    \Object<A>
+}\)に対して\(\Morphism<ug>=\Morphism<uh>\)を満たす射\(\FunctionStyle{\Morphism<u>}{\Object<A>}{\Object<X>}\)が存在しないとき，またそのときに限り，\(\ParallelFunctionStyle{%
+    \OrderedTuple<\Morphism<g>, \Morphism<h>>
+}{%
+    \Object<C>
+}{%
+    \Object<A>
+}\)は\WordCodisjointed です。
+\(\ZariskiCategory\)が終対象を持つならば，\WordCodisjointed な射の組が存在することは\(\TerminalObject\)が\WordStrictTerminalObject であることを導きます。
+この場合は，平行射\(\ParallelFunctionStyle{%
+    \OrderedTuple<\Morphism<g>, \Morphism<h>>
+}{%
+    \Object<C>
+}{%
+    \Object<A>
+}\)に対して余等化子\(\Object<A>\to\TerminalObject\)が存在するとき，またそのときに限り，\(\ParallelFunctionStyle{%
+    \OrderedTuple<\Morphism<g>, \Morphism<h>>
+}{%
+    \Object<C>
+}{%
+    \Object<A>
+}\)は\WordCodisjointed です。
+\WordNonStrictTerminalObject を持つ圏，
+例えば零対象を持つ\YAKUTYU{非自明な}圏は，\WordCodisjointed な射の組は存在しません。
+
+\begin{definition}
+    \begin{enumerate}
+        \item A morphism
+    \end{enumerate}
+\end{definition}

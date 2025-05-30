@@ -1,0 +1,22 @@
+\def\NewCategory#1{%
+    \expandafter\def\csname #1Cat\endcsname{\mathsf{#1}}%
+}
+\def\NewWord#1#2{%
+    \expandafter\def\csname Word#1\endcsname{#2}%
+}
+
+\NewCategory{Top}
+\NewWord{CartesianClosed}{Cartesius閉}
+
+\section{導入}
+\subsection{位相的構造について}
+本副節は\cite{Herrlich__1974__Topological_Structures}を参照しています。
+
+位相空間の概念は，トポロジーに於いて最も考えられてきました。
+しかしながら，位相空間論はそれ自体が困難を有しています。
+\begin{enumerate}
+    \item 位相空間と連続写像の圏\(\TopCat\)は\WordCartesianClosed ではありません。
+        即ち，位相空間\(X\)，\(Y\)につき，\(Y\)から\(X\)への連続写像全体\(X^Y\)に対して標準的な位相が定め，
+        \(Z\)を位相空間とするとき\((X^Y)^Z\)と\(X^{Y\times Z}\)とが自然に同型になるようにはできません。
+
+\end{enumerate}
