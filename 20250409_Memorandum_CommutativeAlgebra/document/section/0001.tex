@@ -1,0 +1,256 @@
+\NewDocumentCommand{\FunctionStyle}{mmm}{#1\colon#2\to#3}
+\NewDocumentCommand{\THEN}{}{\(\Longrightarrow\)}
+\NewDocumentCommand{\Inv}{}{^{-1}}
+\NewDocumentCommand{\Element}{d<>}{\ConceptDefinitor{x}<#1>}
+\NewDocumentCommand{\Map}{d<>}{\ConceptDefinitor{f}<#1>}
+\NewDocumentCommand{\OrderedTuple}{d<>}{\langle#1\rangle }
+\NewDocumentCommand{\Monoid}{d<>}{\ConceptDefinitor{M}<#1>}
+\NewDocumentCommand{\Ring}{d<>}{\ConceptDefinitor{R}<#1>}
+\NewDocumentCommand{\ZeroRing}{}{\mathds{O}}
+\NewDocumentCommand{\Field}{d<>}{\ConceptDefinitor{K}<#1>}
+\NewDocumentCommand{\DivisibleRing}{d<>}{\ConceptDefinitor{D}<#1>}
+\NewDocumentCommand{\RealField}{}{\mathbb{R}}
+\NewDocumentCommand{\ComplexField}{}{\mathbb{C}}
+\NewDocumentCommand{\QuaternionField}{}{\mathbb{H}}
+\NewDocumentCommand{\IntegerRing}{}{\mathbb{Z}}
+\NewDocumentCommand{\PolynomialRing}{m d[]}{{#1}\IfValueT{#2}{[X]}}
+\NewDocumentCommand{\UnitGroup}{d()}{{\IfValueTF{#1}{#1}{\Ring}}^{\times}}
+\NewDocumentCommand{\CommutativeRing}{d<>}{\ConceptDefinitor{A}<#1>}
+\NewDocumentCommand{\RingCat}{}{\mathsf{Ring}}
+
+\section{環とイデアル}
+
+本節では環の構成と，
+内部構造を表わすイデアルに関して基本的な事柄を説明します。
+また，環の直観を養う上で大変重要な例についても手を動かしながら観察します。
+
+\begin{definition}
+    五つ組\( \OrderedTuple<\Set<R>, +, 0, \times, 1> \)が環であるとは，次の三条件を満たすことをいう。
+    \begin{enumerate}
+        \item 三つ組\( \OrderedTuple<\Set<R>, +, 0> \)がアーベル群であり，
+        \item 三つ組\( \OrderedTuple<\Set<R>, \times, 1> \)がモノイドであり，
+        \item 三つ組\( \OrderedTuple<\Set<R>, +, \times> \)が分配系である。
+    \end{enumerate}
+    即ち，\(0\)に関して単位的な可換かつ結合的な二項演算\(+\)および\(1\)に関して単位的な結合的な二項演算\(\times\)を備えた集合\(\Set<R>\)であって，
+    \(+\)と\(\times\)に関して分配的であるものを環という。
+    また，
+    集合\(\Set<R>\)を環の下部集合といい，
+    演算\(+\)を環\(\Ring\)の加法といい，
+    演算\(\times\)を環\(\Ring\)の乗法という。
+    \(0\)を零元といい，\(1\)を単元という。
+\end{definition}
+
+集合と付加構造の組として定義される数学的対象に対して広く行われている通り，
+混乱が生じない限りは単に環\(\Ring\)と書きます。
+加法に関してはアーベル群を為すため，
+環\(\Ring\)の元\(\Element<r>\)は加法に関する逆元\(-\Element<r>\)を持ちます。
+一方，乗法に関してはモノイドを為すことしか公理としては課さないため，
+環\(\Ring\)の元\(\Element<r>\)は乗法に関する逆元\(\Element<r>\Inv\)を持つとは限りません。
+実際，零元\(0\)は，環\(\Ring\)の任意の元\(\Element<r>\)につき\(0\times\Element<r>=0\)が成り立つため，
+\(0=1\)でない限り，\(0\Inv\)は存在しません。
+\(0=1\)という条件は次のように換言されます。
+
+\begin{proposition}
+    環\(\Ring\)につき，次の四条件は同値である。
+    \begin{enumerate}
+        \item 環\(\Ring\)の任意の元\(\Element<r>\)は乗法に関する逆元を持つ。
+        \item 環\(\Ring\)の零元は乗法に関する逆元を持つ。
+        \item 環\(\Ring\)の単位元\(1\)と零元\(0\)とは一致する。
+        \item 環\(\Ring\)の任意の元\(\Element<r>\)について，\(\Element<r>=0\)が成り立つ。
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    (1)\THEN(2)は明白であり，(2)\THEN(3)は明白である。
+    (3)\THEN(4)については，\(\Element<r>=\Element<r>1=\Element<r>0=0\)である。
+    (4)\THEN(1)については，\(\Ring=\Set{0}\)が成り立ち，\(0\times0=0\)より(1)が成り立つことがわかる。
+\end{proof}
+
+この命題の条件を満たす環を零環といい，\(\ZeroRing\)と書きます。
+また，環の任意の元\(\Element<r>\)，\(\Element<r'>\)に対して，
+\(\Element<r>\times\Element<r'>=0\)が成り立つとき，環\(\Ring\)を積零環といいます。
+我々の流儀では環に単位元の存在を仮定しているため，
+積零環と零環とは同値な概念であるといえます\footnote{
+    擬環に於いても零環ならば積零環であることは成り立ちますが，
+    この逆は成り立ちません。
+    実際，任意のアーベル群に対して，
+    積零擬環の構造が一意的に入れられます。
+}。
+
+一般に，モノイド\(\Monoid\)の元は，
+モノイドの演算に関する逆元が存在するとき可逆であるといい，
+可逆な元のことを単元と，あるいはより単純に可逆元といいます。
+モノイド\(\Monoid\)の単元全体の集合を\(\UnitGroup(\Monoid)\)と書きます。
+\(\UnitGroup(\Monoid)\)は\(\Monoid\)の演算に関して群を為すため，
+モノイド\(\Monoid\)の単元群といいます。
+特に環\(\Ring\)の乗法モノイドに関する単元群は，環\(\Ring\)の乗法群とも呼ばれます。
+
+環\(\Ring\)は零環でなければ\(0\)は可逆になりえませんが，
+それのみを除いた集合\(\Ring\setminus\Set{0}\)が乗法群になる場合があります。
+これは，零元でない任意の元が可逆であるという意味で大変性質がよく，
+このようなクラスは大変性質がよく，あらゆる場面で現れます。
+\begin{definition}
+    環\(\Field\)の単元群が集合\(\Ring\setminus\Set{0}\)と一致するとき，
+    環\(\Field\)は可除環または斜体であるという\footnote{
+        斜体は英語 skew field の訳語ですが，
+        field の由来は独語の K\"{o}per に遡りますります。
+        そのため，斜体は\(\Field\)と表されることが少なくありません。
+        一方，可除環は英語 divisible ring の訳語であり，
+        \(\DivisibleRing\)と表されることがあります。
+    }。
+\end{definition}
+実数体\(\RealField\)や複素数体\(\ComplexField\)，四元数体\(\QuaternionField\)は斜体ですが，
+有理整数環\(\IntegerRing\)や多項式環\(\PolynomialRing{\Ring}[X]\)は斜体ではありません。
+また，定義より零環\(\ZeroRing\)は斜体ではないことにも注意します。
+
+\begin{proposition}
+    斜体\(\Field\)の任意の二元\(\Element<r>\)，\(\Element<r'>\)に対して，
+    \(\Element<r>\)または\(\Element<r'>\)のいずれも零元でなければ，
+    積\(\Element<r>\times\Element<r'>\)は零元でない。
+\end{proposition}
+
+\begin{proof}
+    斜体\(\Field\)の元\(\Element<r>\)は零元でなければ単元であり，
+    単元全体は積について群を為すため，
+    特に積について閉じている。
+\end{proof}
+
+次に環の間の射の定義をします。
+
+\begin{definition}
+    \(f\)が環\(\Ring\)から環\(\Ring'\)への環準同型写像であるとは，
+    \(\Map\)が環\(\Ring\)の下部集合から環\(\Ring'\)の下部集合への写像であり，
+    \(\Map\)が加法と乗法を保ち，
+    かつ環の零元と単位元とを保つことをいう。
+    環準同型写像は，環の射ともいう。
+\end{definition}
+
+環準同型写像は写像ですから，
+終域と始域が一致する二つの環の射があるとき，
+二つの合成写像を考えることができます。
+この合成写像が再び環準同型写像であることは容易に確かめられます。
+また，環\(\Ring\)の下部集合の恒等写像は環準同型写像の最も単純な例を与えます。
+この観察から，
+環を対象とし，環準同型写像を射とする圏\(\RingCat\)が考えられます。
+この圏を環の圏といいます\footnote{環準同型写像は環の圏の射ですから，環の射という呼称はこれを簡単に約めて言っていると思うこともできます。}。
+
+環準同型写像の条件は，図式を用いて次のように表されます。
+この換言は殆ど明らかであるため，証明は省略いたします。
+\begin{proposition}
+    二つの環\(\Ring\)，\(\Ring'\)の下部集合の間の写像\(\Map\)につき，
+    \(\Map\)が次の四つの図式を可換にするとき，
+    またそのときに限り，\(\Map\)は環準同型写像である。
+    \[
+        \begin{tikzpicture}
+            \node (A) at (0, 0) {\(\Ring\times\Ring\)};
+            \node (B) at (3, 0) {\(\Ring'\times\Ring'\)};
+            \node (C) at (0, -1.5) {\(\Ring\)};
+            \node (D) at (3, -1.5) {\(\Ring'\)};
+            \draw[->] (A) to node[above] {\(\Map\times\Map\)} (B);
+            \draw[->] (C) to node[above] {\(\Map\)} (D);
+            \draw[->] (A) to node[left] {\(+_{\Ring}\)} (C);
+            \draw[->] (B) to node[right] {\(+_{\Ring'}\)} (D);
+            \node (E) at (5, 0) {\(\Ring\times\Ring\)};
+            \node (F) at (8, 0) {\(\Ring'\times\Ring'\)};
+            \node (G) at (5, -1.5) {\(\Ring\)};
+            \node (H) at (8, -1.5) {\(\Ring'\)};
+            \draw[->] (E) to node[above] {\(\Map\times\Map\)} (F);
+            \draw[->] (G) to node[above] {\(\Map\)} (H);
+            \draw[->] (E) to node[left] {\(\times_{\Ring}\)} (G);
+            \draw[->] (F) to node[right] {\(\times_{\Ring'}\)} (H);
+        \end{tikzpicture}
+    \]
+    \[
+        \begin{tikzpicture}
+            \node (A) at (0, 0) {\(\Set{\ast}\)};
+            \node (B) at (2, 0) {\(\Set{\ast}\)};
+            \node (C) at (0, -1.5) {\(\Ring\)};
+            \node (D) at (2, -1.5) {\(\Ring'\)};
+            \draw[->] (A) to node[above] {\(\Map^0\)} (B);
+            \draw[->] (C) to node[above] {\(\Map\)} (D);
+            \draw[->] (A) to node[left] {\(0_{\Ring}\)} (C);
+            \draw[->] (B) to node[right] {\(0_{\Ring'}\)} (D);
+            \node (E) at (5, 0) {\(\Set{\ast}\)};
+            \node (F) at (7, 0) {\(\Set{\ast}\)};
+            \node (G) at (5, -1.5) {\(\Ring\)};
+            \node (H) at (7, -1.5) {\(\Ring'\)};
+            \draw[->] (E) to node[above] {\(\Map^0\)} (F);
+            \draw[->] (G) to node[above] {\(\Map\)} (H);
+            \draw[->] (E) to node[left] {\(1_{\Ring}\)} (G);
+            \draw[->] (F) to node[right] {\(1_{\Ring'}\)} (H);
+        \end{tikzpicture}
+    \]
+\end{proposition}
+
+代数幾何的な解釈が可能であったり，
+整数論との関わりが深いなど，
+いろいろな観点から大変よく調べられているクラスに可換環があります。
+このクラスも定義しておきましょう。
+
+\begin{definition}
+    環\(\CommutativeRing\)が可換環であるとは，
+    積\(\times\)が可換であることをいう\footnote{
+        可換環論の有名なテキストは仏語で書かれてきた歴史があり，
+        可換環は仏語で anneau commutatif というため，
+        可換環は\(\CommutativeRing\)と書くことが多いです。
+    }。
+\end{definition}
+
+次の副節以降では，既知の環から新たな環を構成する手法について述べます。
+環は集合に付加構造が載っている数学的対象ですから，
+集合の構成に伴って付加構造が定まるかを観察することは基本的です。
+この考えに沿って，部分環，直積環，函数環，自己準同型環，剰余環を考えます。
+
+これらを踏まえた上で，
+また，環は対象が一つの前加法圏だと見做せることと，
+可換環がある意味では函数環を一般化した概念だと見做せることとを紹介し，
+それぞれの立場から局所化という構成を考えます。
+
+\subsection{環の構成：部分環}
+\begin{definition}
+    環\(\Ring\)の下部集合の部分\(\Set<S>\)に環\(\Ring\)の部分環の構造が定められるとは，
+    包含写像\(\FunctionStyle{\Map<i>}{\Set<S>}{\Ring}\)が環準同型写像であるような環構造が\(\Set<S>\)に定まることをいう。
+    この条件を満たす集合\(\Set<S>\)上の環構造は存在すれば一意的であり，
+    一意的な環構造を備えた部分集合\(\Set<S>\)を環\(\Ring\)の部分環という。
+\end{definition}
+
+一意性は，環の射の特徴付けに基づいて部分集合\(\Set<S>\)上の演算の必要条件を考えることが肝要です。
+先ず，加法については，
+\[
+    \Map<+_{\Set<S>}>(\Element<s>, \Element<s'>) 
+    = \Map<+_{\Set<S>}>(\Map<\Map<i>\times\Map<i>>(\Element<s>, \Element<s'>))
+    = \Map<i>(\Map<+_{\Ring}>(\Element<s>, \Element<s'>))
+    = \Map<+_{\Ring}>(\Element<s>, \Element<s'>)
+\]
+を満たさなければなりません。
+乗法についても同様に，\(\Map<\times_{\Set<S>}>(\Element<s>, \Element<s'>) = \Map<\times_{\Ring}>(\Element<s>, \Element<s'>)\)を満たす必要があり，
+零元，単位元についても\(0_{\Set<S>} = 1_{\Ring}\)や\(1_{\Set<S>}=1_{\Ring}\)が成り立たなければなりません。
+このことから，\(\Set<S>\)に環\(\Ring\)の部分環の構造が定められるとき，
+その構造は一意的であることが分かります。
+また，この観察から次の特徴付けも得られます。
+
+\begin{proposition}
+    環\(\Ring\)の下部集合の部分\(\Set<S>\)につき，次の条件は同値である。
+    \begin{enumerate}
+        \item \(\Set<S>\)に環\(\Ring\)の部分環の構造が定められる。
+        \item \(\Set<S>\)は環\(\Ring\)の加法，乗法について閉じており，かつ，零元と単位元を持つ。
+    \end{enumerate}
+\end{proposition}
+
+
+\subsection{環の構成：直積環}
+\subsection{環の構成：函数環}
+\subsection{環の構成：自己準同型環}
+\subsection{環の構成：剰余環}
+\subsection{前加法圏}
+\subsection{可換環のスペクトラム}
+\subsection{環の構成：局所化}
+\subsection{アフィンスキーム}
+\section{環の例}
+\subsection{有理整数環，有理数体，実数体，複素数体，四元数体}
+\subsection{有理整数感と多項式環}
+\subsection{体とその拡大}
+\subsection{有理整数環と代数的整数環，Dedekind整域}
+\subsection{付値整域}
+\section{加群}
+
+
