@@ -1,0 +1,140 @@
+\section{本文}
+
+% \subsection{Abstract: }
+\subsection{概要}
+
+% Connectivity spaces are obtained by axomatizing the notion of the ``set of all connected subsets'' (e.g. of a topological or uniform space). 
+\WordConnectivitySpace は，位相空間や一様空間などの「連結部分集合全体の為す集合」の概念を公理化することによって得られます。
+% This leads to a generalization of component categories which have been studied by several people, especially by Graciela Salicrup. 
+この概念は，Graciela Salicrup など幾人かによって研究されている\WordComponentCategory に一般化されます。
+% The results are taken from the author's thesis.
+主結果は著者の学位論文から引いたものです\cite{boerger--1981}。
+
+% \subsection{Introduction}
+\subsection{導入}
+
+% In this paper we are concerned with generalizations of connectivity of topological (or uniform etc.) spaces into two different directions. 
+本論文では，位相空間（ないしは一様空間等々の）連結性の概念を二つの異なる方向に一般化します。
+% At first we consider an abstract notion of the ``set of all connected subsets'' of a given space. 
+一つ目の方向は，所与の空間の「連結部分集合全体の為す集合」の概念を抽象化します。
+% This leads to the notion of a connectivity space. 
+これは\WordConnectivitySpace の概念に導きます。
+% The connectivity spaces form a topological category \(\ZusCat\) over \(\SetCat\), but \(\ZusCat\) is not cartesian closed. 
+\WordConnectivitySpace の為す圏は\(\SetCat\)上の位相的圏\(\ZusCat\)を為しますが，\(\ZusCat\)はデカルト閉ではありません。
+
+% The second generalization is an abstract notion of the ``category of all connected objects'' of a given category. 
+二つ目の方向は，所与の圏の「連結対象の為す圏」の概念を抽象化します。
+% This leads to the notion of a ``component category'' which has been studied at first for the category topological or uniform spaces by Preu\ss and Herrlich and later for arbitary topological categories by Strecker and Salicrup and Vazquez. 
+これは\WordComponentCategory の概念に導き，
+最初に位相空間の為す圏と一様空間の為す圏に限って Preu\ss\cite{preuss--1967} および Herrlich\cite{herrlich--1968} によって研究されました。
+後に Strecker\cite{strecker--1974} および Salicrup--Vazquez\cite{salicrup_vazquez--1972} らによって任意の位相的圏に対して一般化されました。
+% Our notion works for an arbitarary category together with a set-valued functor. 
+我々の定義する概念は，\(\SetCat\)値の函手を備えた圏に対して機能します。
+% The generalization was motivated by Pumpl\"{u}m's unpublished idea of defining component categories by ``quotients of the forgetful functor''. 
+一般化は，Pumpl\"{u}m の未出版のアイデアである，\WordComponentCategory の「忘却函手の商」による定式化に動機付けられています。
+% For an arbitrary functor, component categories need not have many interesting properties, but for mono-fibrations the theory becomes quite smooth. 
+任意の函手に対して考えると，\WordComponentCategory は興味深い性質を持つとは限りませんが，\WordMonoFibration を仮定すると理論展開が大変円滑に進みます。
+
+\subsection{連結性空間}
+
+\begin{definition}
+    %A connectivity space is an ordered pair \( \ConnectivitySpace = \OrderedSet<\VFunctor(\ConnectivitySpace), \ConnectivityStructure(\ConnectivitySpace)>\), where \(\VFunctor(\ConnectivitySpace)\) is a set and \(\ConnectivityStructure(\ConnectivitySpace)\) is a collection of non-empty subsets of \(\VFunctor(\ConnectivitySpace)\) with the following properties: 
+    %\begin{enumerate}
+    %    \item \( \Set{\Element}\in\ConnectivityStructure(X) \) for all \( \Element\in\VFunctor(\ConnectivitySpace) \). 
+    %    \item \( \bigcup\Set<\mathcal{S}>\in\ConnectivityStructure(\ConnectivitySpace) \) for all \( \Set<\mathcal{S}>\subset\ConnectivityStructure(\ConnectivitySpace) \) with \( \Set<\mathcal{S}>\not=\emptyset \), \( \bigcap\Set<\mathcal{S}>\not=\emptyset \). 
+    %\end{enumerate}
+    %in this case \( \ConnectivityStructure(\ConnectivitySpace) \) is called a connectivity structure on \( \VFunctor(\ConnectivitySpace) \). 
+    組\( \ConnectivitySpace = \OrderedSet<\VFunctor(\ConnectivitySpace), \ConnectivityStructure(\ConnectivitySpace)>\)が\WordConnectivitySpace であるとは，
+    \(\VFunctor(\ConnectivitySpace)\)は集合であり，
+    \(\ConnectivityStructure(\ConnectivitySpace)\)は\(\VFunctor(\ConnectivitySpace)\)の非空部分集合系であって，
+    \begin{enumerate}
+        \item 任意の\( \Element\in\VFunctor(\ConnectivitySpace) \)につき，\( \Set{\Element}\in\ConnectivityStructure(X) \)が成り立つ。
+        \item \( \Set<\mathcal{S}>\not=\emptyset \), \( \bigcap\Set<\mathcal{S}>\not=\emptyset \)を満たす任意の\( \Set<\mathcal{S}>\subset\ConnectivityStructure(\ConnectivitySpace) \)につき，\( \bigcup\Set<\mathcal{S}>\in\ConnectivityStructure(\ConnectivitySpace) \)が成り立つ。
+    \end{enumerate}
+    なる二条件を満たすことをいう。
+    このとき，集合系\( \ConnectivityStructure(\ConnectivitySpace) \)を下部集合\( \VFunctor(\ConnectivitySpace) \)上の\WordConnectivityStructure という。
+    % If \( \ConnectivitySpace \) and \( \ConnectivitySpace<Y> \) are connectivity spaces, a connectivity morphism is given by a map \( \FunctionStyle{\VFunctor(\Map)}{\VFunctor(\ConnectivitySpace)}{\VFunctor(\ConnectivitySpace<Y>)} \) such that the set-theoretical image \( \VFunctor(\Map)[\Set<Z>] \) of any \( \Set<Z> \in \ConnectivityStructure(\ConnectivitySpace) \) under \( \VFunctor(\Map) \) belongs to \( \ConnectivityStructure(\ConnectivitySpace<Y>) \). 
+    \( \ConnectivitySpace \)および\( \ConnectivitySpace<Y> \)を\WordConnectivitySpace とするとき，写像\( \FunctionStyle{\VFunctor(\Map)}{\VFunctor(\ConnectivitySpace)}{\VFunctor(\ConnectivitySpace<Y>)} \)が\WordConnectivityMorphism であるとは，任意の\( \Set<Z> \in \ConnectivityStructure(\ConnectivitySpace) \)について，集合論的像\( \VFunctor(\Map)[\Set<Z>] \)が\( \ConnectivityStructure(\ConnectivitySpace<Y>) \)に含まれることをいう。
+    % \( \ZusCat \) denotes the category of connectivity spaces and connectivity morphisms with the obvious composition (i.e. such that \( \FunctionStyle{\VFunctor}{\ZusCat}{\SetCat} \) becomes a functor). 
+    %(\(\ZusCat\) is an abbreviation for the German word ``Zusammenhangsr\"{a}ume''. We use this abbreviation in order to prevent confusions with convex sets, convergence spaces, contigual spaces etc.)
+    \WordConnectivitySpace と\WordConnectivityMorphism の為す圏を\( \ZusCat \)と書く。
+    ここで射の合成は，写像の合成により定めるものとする。
+    このとき，\( \FunctionStyle{\VFunctor}{\ZusCat}{\SetCat} \)は函手となり，\( \ZusCat \)から\( \SetCat \)への忘却函手という。\footnote{\(\ZusCat\)は独語Zusammenhangsr\"{a}umeに由来しています。凸集合（convex set），収束空間（convergence space），contigual spaceなどの為す圏との混乱を割けるために独語由来の記号を用いています。}。
+\end{definition}
+
+\begin{theorem}
+    %\begin{enumerate}
+    %    \item \( \FunctionStyle{\VFunctor}{\ZusCat}{\SetCat} \) is a topological. 
+    %    \item A source \( \OrderedSet<\ConnectivitySpace, \FamilyStyle{ \FunctionStyle{\Map_{\Index}}{\ConnectivitySpace}{\ConnectivitySpace<Y>_{\Index}} }{ \Index\in\IndexSet }> \) in \( \ZusCat \) is initial, iff \( \ConnectivityStructure(\ConnectivitySpace) = \Set{ \Set<Z>\in\PowerSet(\VFunctor(\ConnectivitySpace))\setminus\Set{\emptyset} | \forall\Index\in\IndexSet \, \VFunctor(\Map_{\Index})[\Set<Z>] \in \ConnectivityStructure(\ConnectivitySpace<Y>_{\Index}) } \).
+    %    \item \( \ZusCat \) is not cartesian closed.
+    %\end{enumerate}
+    次が成り立つ。
+    \begin{enumerate}
+        \item 函手\( \FunctionStyle{\VFunctor}{\ZusCat}{\SetCat} \)は位相的である。
+        \item \( \ZusCat \)に於ける湧出\( \OrderedSet<\ConnectivitySpace, \FamilyStyle{ \FunctionStyle{\Map_{\Index}}{\ConnectivitySpace}{\ConnectivitySpace<Y>_{\Index}} }{ \Index\in\IndexSet }> \)につき，これが始普遍的であるとき，またそのときに限り，\( \ConnectivityStructure(\ConnectivitySpace) = \Set{ \Set<Z>\in\PowerSet(\VFunctor(\ConnectivitySpace))\setminus\Set{\emptyset} | \text{任意の\(\Index\in\IndexSet\)につき，\(\VFunctor(\Map_{\Index})[\Set<Z>] \in \ConnectivityStructure(\ConnectivitySpace<Y>_{\Index})\) } } \)である。
+        \item \( \ZusCat \)はデカルト閉ではない。
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \Yotei[証明の詳細を埋める上では，先に位相的圏の基礎事項について纏めるべきである。]
+\end{proof}
+
+\begin{definition}
+    % A non-empty collection \(\Set<\mathcal{S}>\) of non-empty sets is called chain-linked, iff for any \(\Set<S>, \Set<S>'\in\Set<\mathcal{S}>\) there are a natural number \(\NaturalNumber\) and sets \(\Set<S>=\Set<S>_0, \Set<S>_1, \ldots, \Set<S>_{\NaturalNumber}=\Set<S>' \in \Set<\mathcal{S}>\) such that \(\Set<S>_{\NaturalNumber<i>}\cap\Set<S>_{\NaturalNumber<i+1>} \not= \emptyset\) for all \(\NaturalNumber<i>\in\Set{0,\ldots,\NaturalNumber<n-1>}\).
+    集合系\( \Set<\mathcal{S}> \)が\WordChainLinked であるとは，
+    \( \Set<\mathcal{S}> \)は元を持ち，
+    \( \Set<\mathcal{S}> \)の任意の二元\( \Set<S> \)，\( \Set<S>' \)に対し，
+    自然数\( \NaturalNumber \)と\( \Set<\mathcal{S}> \)に於ける長さ\( \NaturalNumber<n+1> \)の列\( \Set<S>=\Set<S>_0, \Set<S>_1, \ldots, \Set<S>_{\NaturalNumber} \)が存在し，
+    任意の\( \NaturalNumber<i>\in\Set{0,1,\ldots,\NaturalNumber<n-1>} \)につき\( \Set<S>_{\NaturalNumber<i>}\cap\Set<S>_{\NaturalNumber<i+1>} = \emptyset \)が成り立つ。
+\end{definition}
+
+\begin{theorem}
+    次が成り立つ。
+    \begin{enumerate}
+        \item \WordConnectivitySpace\(\ConnectivitySpace\)の\WordConnectivityStructure\(\ConnectivityStructure(\ConnectivitySpace)\)の部分集合\(\Set<\mathcal{S}>\)につき，\(\Set<\mathcal{S}>\)が\WordChainLinked ならば\(\bigcup\Set<\mathcal{S}>\in\ConnectivityStructure(\ConnectivitySpace)\)である。
+        \item 集合\(\Set\)とその部分集合系\(\Set<\mathcal{U}>\)につき，\(\Set\)上の\WordConnectivityStructure\(\ConnectivityStructure\)であって，\(\Set<\mathcal{U}>\)を包むものの中で最小のものが存在する。これを\(\ConnectivityStructureGeneratedBy(\Set<\mathcal{U}>)\)と書く。
+        \(\Set<Z>\subset\Set\)につき，\(\Cardinality(\Set<Z>)=1\)または\(\Set<\mathcal{U}>\cap\PowerSet(\Set<Z>)\)が\WordChainLinked かつ\(\bigcup(\Set<\mathcal{U}>\cap\PowerSet(\Set<Z>))=\Set<Z>\)であるとき，またそのときに限り，\(\Set<Z>\in\ConnectivityStructureGeneratedBy(\Set<\mathcal{U}>)\)である。
+        \item \(\ZusCat\)に於ける沈下\(\OrderedSet<\ConnectivitySpace<Y>, \FamilyStyle{\FunctionStyle{\Map_{\Index}}{\ConnectivitySpace_{\Index}}{\ConnectivitySpace<Y>}}{\Index\in\IndexSet}>\)につき，\(\ConnectivityStructure(\ConnectivitySpace<Y>)\)が\(\Set<\mathcal{U}>\coloneqq\Set{\VFunctor(\Map_{\Index})[\Set<Z>] | \Index\in\IndexSet, \Set<Z>\in\ConnectivityStructure(\ConnectivitySpace_{\Index})}\)を包む\(\VFunctor(\ConnectivitySpace<Y>)\)上の最小の\WordConnectivityStructure であるとき，またそのときに限り，\(\OrderedSet<\ConnectivitySpace<Y>, \FamilyStyle{\FunctionStyle{\Map_{\Index}}{\ConnectivitySpace_{\Index}}{\ConnectivitySpace<Y>}}{\Index\in\IndexSet}>\)は\(\VFunctor\)-終普遍的である。
+        \item \(\ZusCat\)に於ける沈下\(\OrderedSet<\ConnectivitySpace<Y>, \FamilyStyle{\FunctionStyle{\Map_{\Index}}{\ConnectivitySpace_{\Index}}{\ConnectivitySpace<Y>}}{\Index\in\IndexSet}>\)につき，\(\OrderedSet<\VFunctor(\ConnectivitySpace<Y>), \FamilyStyle{\VFunctor(\Map_{\Index})}{\Index\in\IndexSet}>\)が\(\SetCat\)に於ける余積沈下であり，かつ，\(\VFunctor(\ConnectivitySpace<Y>)=\Set{ \VFunctor(\Map_{\Index})[\Set<Z>] | \Index\in\IndexSet, \Set<Z>\in\ConnectivityStructure(\ConnectivitySpace_{\Index}) }\)が成り立つとき，またそのときに限り，\(\OrderedSet<\ConnectivitySpace<Y>, \FamilyStyle{\FunctionStyle{\Map_{\Index}}{\ConnectivitySpace_{\Index}}{\ConnectivitySpace<Y>}}{\Index\in\IndexSet}>\)は\(\ZusCat\)に於ける余積沈下である。
+        \(\ZusCat\)に於ける余積に付随する標準的入射は\(\VFunctor\)-始普遍的である。
+        \item \(\ZusCat\)に於いて，商は遺伝的である。即ち，\(\VFunctor\)-終普遍的な\(\ZusCat\)の射\(\FunctionStyle{\Map}{\ConnectivitySpace}{\ConnectivitySpace<Y>}\)につき，\(\VFunctor(\Map)\)が全射であり，かつ，\(\Set<B>\subset\VFunctor(\ConnectivitySpace<Y>)\)であるならば，\(\ZusCat\)の射\(\FunctionStyle{\Map<g>}{\ConnectivitySpace<A>}{\ConnectivitySpace<B>}\)は終普遍的である。
+        ここで\(\ConnectivitySpace<A>\)の下部集合は\((\VFunctor(\Map))\Inv(\Set<B>)\)であり，\WordConnectivityStructure は\(\ConnectivityStructure(\ConnectivitySpace)\cap\PowerSet(A)\)である。
+        また，\(\ConnectivitySpace<B>\)の下部集合は\(\Set<B>\)であり，\WordConnectivityStructure は\(\ConnectivityStructure(\ConnectivitySpace<Y>)\cap\PowerSet(B)\)である。
+        更に，任意の\(\Element\in\Set<A>\)につき，\(\VFunctor(\Map<g>)(\Element)=\Map(\Element)\)が成り立つものとする。
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \Yotei[先と同様の理由で後ほど書くことにします。]
+\end{proof}
+
+\begin{theorem}
+    \WordConnectivitySpace\(\ConnectivitySpace\)につき，次が成り立つ。
+    \begin{enumerate}
+        \item \(\VFunctor(\ConnectivitySpace)\)上の関係\(\sim\)を，\(\Set<Z>\in\ConnectivityStructure(\ConnectivitySpace)\)が存在して，\(\Element, \Element<y> \in \Set<Z> \)が成り立つとき，またそのときに限り，\(\Element\sim\Element<y>\)であると定めると，\(\sim\)は同値律を満たす。
+        同値関係\(\sim\)による\(\VFunctor(\ConnectivitySpace)\)で類別した際の同値類を，以降，\WordComponent と呼ぶ。
+        特に，\(\Set<Z>\in\ConnectivityStructure(\ConnectivitySpace)\)を包む\WordComponent を\(\Set<Z>\)\WordComponent という。
+        \WordComponent 全体の集合を\(\PFunctor(\ConnectivitySpace)\)と書き，
+        商集合に付随する標準的射影\(\VFunctor(\ConnectivitySpace)\rightarrow\PFunctor(\ConnectivitySpace)\)を\(\ComponentMap(\ConnectivitySpace)\)と書く。
+        \item \(\PFunctor(\ConnectivitySpace)\subset\ConnectivityStructure(\ConnectivitySpace)\)が成り立つ。
+        \item \(\Set<K>\in\ConnectivityStructure(\ConnectivitySpace)\)につき，組\(\OrderedSet<\Set<K>, \ConnectivityStructure(\ConnectivitySpace)\cap\PowerSet(\Set<K>)>\)は連結な\WordConnectivitySpace であり，\(\Set<K>\)から下部集合\(\VFunctor(\ConnectivitySpace)\)への包含写像は，この\WordConnectivitySpace から\(\ConnectivitySpace\)への\(\ZusCat\)の射\(\Map<u_{\Set<K>}>\)を定める。
+        更に，\(\OrderedSet<\ConnectivitySpace, \FamilyStyle{\Map<u_{\Set<K>}>}{\Set<K>\in\PFunctor(\ConnectivitySpace)}>\)は余積沈下である。
+        \item \WordConnectivitySpace\(\ConnectivitySpace<Y>\)と\(\ZusCat\)の射\(\FunctionStyle{\Map}{\ConnectivitySpace}{\ConnectivitySpace<Y>}\)につき，写像\(\FunctionStyle{\PFunctor(\Map)}{\PFunctor(\ConnectivitySpace)}{\ConnectivitySpace<Y>}\)が一意的に存在し，\(\PFunctor(\Map)\circ(ComponentMap(\ConnectivitySpace)) = (\ComponentMap(\ConnectivitySpace<Y>))\circ\VFunctor(\Map)\)が成り立つ。
+        これにより函手\(\FunctionStyle{\PFunctor}{\ZusCat}{\SetCat}\)および自然変換\(\FunctionStyle{\ComponentMap}{\VFunctor}{\PFunctor}\)が定まる。
+        以降，この方法によって\(\PFunctor\)は函手と見做す。
+        \item \(\ZusCat\)の射\(\FunctionStyle{\Map<m>}{\ConnectivitySpace\times\ConnectivitySpace}{\ConnectivitySpace}\)であって，\(\OrderedSet<\VFunctor(\ConnectivitySpace), \VFunctor(\Map<m>)>\)が群を為すものについて考える。
+        \(\Element\Element<y>\coloneqq\VFunctor(\Map<m>)(\Element, \Element<y>)\)と書くとき，正規部分群\(\Group<N>\subset\VFunctor(\ConnectivitySpace)\)が存在して，次が成り立つ：
+        \[
+            \ConnectivityStructure(\ConnectivitySpace) = \Set{ \Set<Z>\in\PowerSet(\VFunctor(\ConnectivitySpace))\setminus\Set{\emptyset} | \text{ \(\VFunctor(\ConnectivitySpace)\)の要素\(\Element\)が存在し，\(\Set<Z>\subset\Element\Group<N>\)が成立する } }
+        \]
+        \item \WordConnectivitySpace の連結性は，積に遺伝する。
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \Yotei[先と同様の理由で後ほど書くことにします。]
+\end{proof}
+
+
+\subsection{}

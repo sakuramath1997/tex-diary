@@ -1,0 +1,77 @@
+\newcommand{\DefineWord}[2]{\expandafter\newcommand\csname Word#1\endcsname{#2}}
+
+\NewDocumentCommand{\Yotei}{o}{{\textcolor{red}{加筆予定\IfValueT{#1}{：#1}}}}
+
+\newcommand{\Hyphen}{\mathchar`-}
+\newcommand{\Inv}{^{-1}}
+
+\usepackage{expl3}
+% meta-macros
+\NewDocumentCommand{\Placeholder}{s}{ \IfBooleanTF{#1}{ ? }{ \text{\textendash} } }
+\newcommand{ \SetMiddle }{ \mathrel{}\middle|\mathrel{} }
+\NewDocumentCommand{\ParenLR}{ d() }{ \left( #1 \right) }
+\ExplSyntaxOn
+\NewDocumentCommand{\CenterMid}{m}
+{
+    \seq_set_split:Nnn \l_tmpa_seq {|}{#1}
+    \seq_if_empty:NTF \l_tmpa_seq
+    {
+        #1
+    }
+    {
+        \seq_pop_left:NN \l_tmpa_seq \l_tmpa_tl
+        \l_tmpa_tl
+        \seq_if_empty:NF \l_tmpa_seq
+        {
+            \seq_pop_left:NN \l_tmpa_seq \l_tmpa_tl
+            \expandafter\SetMiddle\l_tmpa_tl
+        }
+    }
+}
+\ExplSyntaxOff
+\NewDocumentCommand{ \ConceptDefinitor }{ m d<> t{'} e{_} d() e{_} }{ {\IfValueTF{#2}{#2}{#1}}\IfValueT{#4}{_{#4}}\IfBooleanT{#3}{'}\IfValueT{#5}{\ParenLR(#5)}\IfValueT{#6}{_{#6}} }
+%\NewDocumentCommand{\HOGE}{d<>}{\ConceptDefinitor{X}<#1>}
+\NewDocumentCommand{ \MapDefinitor }{ m d<> t{'} e{_} d() e{_} }{ {\IfValueTF{#2}{#2}{#1}}\IfValueT{#4}{_{#4}}\IfBooleanT{#3}{'}\ParenLR(\IfValueTF{#5}{#5}{\Placeholder})\IfValueT{#6}{_{#6}} }
+
+% Style
+\NewDocumentCommand{\FunctionStyle}{mmm}{{#1}\colon{#2}\rightarrow{#3}}
+\NewDocumentCommand{\FamilyStyle}{mm}{{(#1)}_{#2}}
+
+% General Usage
+\NewDocumentCommand{\Object}{d<>}{\ConceptDefinitor{x}<#1>}
+
+% Number
+\NewDocumentCommand{\NaturalNumber}{d<>}{\ConceptDefinitor{n}<#1>}
+\NewDocumentCommand{\RationalNumber}{d<>}{\ConceptDefinitor{q}<#1>}
+\NewDocumentCommand{\RealNumber}{d<>}{\ConceptDefinitor{r}<#1>}
+\NewDocumentCommand{\ComplexNumber}{d<>}{\ConceptDefinitor{z}<#1>}
+
+% Set Theory
+\NewDocumentCommand{\Set}{ g d<> }{
+	\IfValueTF{#1}{
+		\left\{\CenterMid{#1}\right\}
+	}{
+		\IfValueTF{#2}{
+			#2
+		}{
+			X
+		}
+	}
+}
+\NewDocumentCommand{\OrderedSet}{d<>}{\langle #1 \rangle}
+\NewDocumentCommand{\PowerSet}{d()}{\mathcal{P}\IfValueT{#1}{(#1)}}
+
+\NewDocumentCommand{\Cardinality}{d()}{\mathsf{card}\IfValueT{#1}{(#1)}}
+
+\NewDocumentCommand{\Map}{d<>}{\ConceptDefinitor{f}<#1>}
+
+\NewDocumentCommand{\Index}{d<>}{\ConceptDefinitor{i}<#1>}
+\NewDocumentCommand{\IndexSet}{d<>}{\ConceptDefinitor{I}<#1>}
+
+% Category Theory
+% Higher Category Theory
+\NewDocumentCommand{\InfinityCategory}{d<>}{\ConceptDefinitor{\mathcal{C}}<#1>}
+\NewDocumentCommand{\IndexedInfinityCategory}{d<>}{\InfinityCategory<\IfValueTF{#1}{#1}{I}>}
+\NewDocumentCommand{\OnePointInfinityCategory}{}{\InfinityCategory<\ast>}
+
+\NewDocumentCommand{\InfinityFunctor}{d<>}{\ConceptDefinitor{F}<#1>}
